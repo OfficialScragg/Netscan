@@ -46,7 +46,7 @@ def setup():
             t.start()
             open_threads+=1
         else:
-            while open_threds >= 255:
+            while open_threads >= 255:
                 time.sleep(0.1)
             t.start()
             open_threads+=1
