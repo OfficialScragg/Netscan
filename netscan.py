@@ -3,7 +3,9 @@
 import threading, socket, progressbar
 
 # Settings
-base_ip = '139.162.248.'
+base_ip = '172.217.'
+thirdOct = range(160, 176)
+#172.217.160.1 - 172.217.175.254
 ip_range = range(1, 255)
 ports = [20, 21, 22, 23, 25, 53, 80,110, 119, 123, 143, 161, 194, 443] # common ports
 out = open('scan-res.txt', 'w')
@@ -36,8 +38,9 @@ def scan(ip, ports):
 def setup():
     global open_threads
     threads = []
-    for ip in ip_range:
-        threads.append(threading.Thread(target=scan, args=(str(base_ip+str(ip)), ports,)))
+    for oct in thirdOct:
+        for ip in ip_range:
+            threads.append(threading.Thread(target=scan, args=(str(base_ip+str(thirdOct)+str('.')+str(ip)), ports,)))
     for t in threads:
         t.start()
         open_threads+=1
