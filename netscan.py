@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-import threading, socket, progressbar
+import threading, socket, progressbar, time
 
 # Settings
 base_ip = '172.217.'
@@ -42,8 +42,14 @@ def setup():
         for ip in ip_range:
             threads.append(threading.Thread(target=scan, args=(str(base_ip+str(thirdOct)+str('.')+str(ip)), ports,)))
     for t in threads:
-        t.start()
-        open_threads+=1
+        if open_threads < 255:
+            t.start()
+            open_threads+=1
+        else:
+            while open_threds !< 255:
+                time.sleep(0.1)
+            t.start()
+            open_threads+=1
     
 if __name__ == '__main__':
     setup()
