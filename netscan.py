@@ -38,9 +38,9 @@ def scan(ip, ports):
 def setup():
     global open_threads
     threads = []
-    for oct in thirdOct:
+    for oct3 in thirdOct:
         for ip in ip_range:
-            threads.append(threading.Thread(target=scan, args=(str(base_ip+str(thirdOct)+str('.')+str(ip)), ports,)))
+            threads.append(threading.Thread(target=scan, args=(str(base_ip+str(oct3)+str('.')+str(ip)), ports,)))
     for t in threads:
         if open_threads < 255:
             t.start()
